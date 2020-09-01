@@ -8,17 +8,19 @@ interface IProps {
     items:IItem[];
     onSelect:(id:number) => void;  
     notFoundElement:string;
+    selectedItemId?: number;
 };
 
 const NavList:React.FC<IProps> = ({
     items, 
     onSelect, 
-    notFoundElement 
+    notFoundElement,
+    selectedItemId 
 }) => {
 
     return (
         <div className='nav_list'>
-            {(items.length) ? items.map((item:IItem) => <Item key={item.id} {...item} onSelect={onSelect}/>) : <NotFoundItem notFoundElement={notFoundElement} /> }
+            {(items.length) ? items.map((item:IItem) => <Item key={item.id} {...item} onSelect={onSelect} selectedItemId={selectedItemId}/>) : <NotFoundItem notFoundElement={notFoundElement} /> }
         </div>
     )
 }

@@ -11,7 +11,8 @@ interface IProps {
     placeholder: string;
     onChange:(e:React.ChangeEvent<HTMLInputElement>) => void; 
     onClear:() => void;
-    value:string; 
+    value:string;
+    selectedItemId?: number 
 
 };
 
@@ -22,7 +23,8 @@ const SideBar:React.FC<IProps> = ({
     onChange, 
     onClear, 
     placeholder, 
-    value
+    value,
+    selectedItemId
 }) => {
 
     return(
@@ -38,6 +40,7 @@ const SideBar:React.FC<IProps> = ({
                     items={items}  
                     onSelect={onSelect} 
                     notFoundElement={notFoundElement} 
+                    selectedItemId={selectedItemId}
                 />
             </div>
         </nav>       

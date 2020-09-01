@@ -15,6 +15,7 @@ const Container:React.FC = () => {
     const [ value, setValue ] = useState<string>('');
     const [ albums, setAlbums ] = useState<IAlbums[]>([]);
     const [ photos, setPhotos ] = useState<IPhotos[]>([]);
+    const [ selectedUser, setSelectedUser ] = useState<IUserInfo|undefined>()
 
     const listItems = useMemo(() => filterByName(users, value), [users, value]);
 
@@ -28,8 +29,10 @@ const Container:React.FC = () => {
 
     const handleSelectAlbums = useCallback(async (id:number) => {
         const albums = await getAlbums(id);
+        const user = users.find(user => user.id === id);
+        setSelectedUser(user);
         setAlbums(albums);
-    }, [])
+    }, [users])
 
 
     const handleSelectPhotos = useCallback(async (id:number) => {
@@ -37,14 +40,13 @@ const Container:React.FC = () => {
         setPhotos(photos);
         console.log('id album', id)
     }, [])
-  
-  
+
     const handleChange = useCallback((e:React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setValue(value);
         console.log('value', value)
     }, []);
-  
+
     const handleClearValue = useCallback( () => {
         setValue('');
     }, []);
@@ -63,6 +65,7 @@ const Container:React.FC = () => {
                 onClear={handleClearValue}
                 value={value}
                 onChange={handleChange}
+                selectedItemId={(selectedUser) ? selectedUser.id : undefined}
             />
             <Content albums={albums} onSelect={handleSelectPhotos} photos={photos} />
         </div>
