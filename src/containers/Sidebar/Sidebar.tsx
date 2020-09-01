@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
-import './sidebar.scss';
 import Input from '../../components/Input/Input';
 import NavList from '../../components/NavList/NavList';
 import { IItem } from '../../common/interfaces';
+import './sidebar.scss';
 
 interface IProps {
     items:IItem[];
@@ -34,7 +34,7 @@ const SideBar:React.FC<IProps> = ({
                     onClear={onClear}
                     placeholder={placeholder}
                 />
-                <div className="sidebar_items">
+                <div className="sidebar_container_list">
                     <NavList 
                         items={items}  
                         onSelect={onSelect} 
