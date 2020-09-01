@@ -1,0 +1,19 @@
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-items: flex-start;
+    justify-content: start;
+    align-items: flex-start;
+    width: 70%;
+    .photo {
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+        border: 1px solid #f89bb4;
+        margin:2px; 
+    }
+}

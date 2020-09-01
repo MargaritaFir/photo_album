@@ -1,13 +1,18 @@
 .item{
     width: 100%; 
     padding: 10px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, .2);
-    background-color: inherit;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, .4);
+    background-color: rgba(174, 231, 169, 0.3);
+    font-weight: bold;
+    color: rgb(78, 73, 75);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     
         &:hover{
             cursor: pointer;
-            color: rgb(153, 32, 209);
+            color: rgb(255, 255, 255);
             font-weight: 600;
+            background-color: rgba(9, 110, 63, 0.6);
 
         }
 }

@@ -26,23 +26,21 @@ const SideBar:React.FC<IProps> = ({
 }) => {
 
     return(
-        <>
-            <div className="sidebar">
-                <Input
-                    onChange={onChange} 
-                    value={value}
-                    onClear={onClear}
-                    placeholder={placeholder}
+        <nav className="sidebar">
+            <Input
+                onChange={onChange} 
+                value={value}
+                onClear={onClear}
+                placeholder={placeholder}
+            />
+            <div className="sidebar_container_list">
+                <NavList 
+                    items={items}  
+                    onSelect={onSelect} 
+                    notFoundElement={notFoundElement} 
                 />
-                <div className="sidebar_container_list">
-                    <NavList 
-                        items={items}  
-                        onSelect={onSelect} 
-                        notFoundElement={notFoundElement} 
-                    />
-                </div>
             </div>
-        </>       
+        </nav>       
     )
 }
 

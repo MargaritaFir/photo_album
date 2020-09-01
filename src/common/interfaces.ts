@@ -26,3 +26,16 @@ export interface IUserInfo {
     company: ICompany
 };
 
+export interface IAlbums {
+    id: number;
+    userId: number;
+    title: string;
+}
+
+export interface IPhotos {
+    id: number;
+    albumId: number;
+    title: string;
+    thumbnailUrl: string;
+}
+

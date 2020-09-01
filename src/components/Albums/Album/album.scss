@@ -1,0 +1,14 @@
+.album {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid rgb(3, 122, 77);
+    margin:2px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 5px;
+}

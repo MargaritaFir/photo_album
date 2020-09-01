@@ -5,6 +5,7 @@ class UsersApi {
     constructor(url: string){
         this.url = url
     }
+
     getUsers() {
         return fetch(`${this.url}/users`)
         .then((response) => response.json())
@@ -21,8 +22,8 @@ class UsersApi {
         });
     };
 
-    getPhotos(userId:number, albumId:number){
-        return fetch(`${this.url}/albums/${albumId}?userId=${userId}`)
+    getPhotos(albumId:number){
+        return fetch(`${this.url}/photos?albumId=${albumId}`)
         .then((response) => response.json())
         .then(data => {
             return data;           

@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
 }
 
 code {
@@ -14,5 +15,8 @@ code {
 
 body, html, * {
   box-sizing: border-box;
+}
+body, html {
+  height: 100vh;
 }
 
