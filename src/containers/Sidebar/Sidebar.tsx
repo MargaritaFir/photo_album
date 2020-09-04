@@ -3,6 +3,7 @@ import Input from '../../components/Input/Input';
 import NavList from '../../components/NavList/NavList';
 import { IItem } from '../../common/interfaces';
 import './sidebar.scss';
+import { Preloader } from '../../components/Preloader/Preloader';
 
 interface IProps {
     items:IItem[];
@@ -13,6 +14,7 @@ interface IProps {
     onClear:() => void;
     value:string;
     selectedItemId?: number 
+    isLoading: boolean;
 
 };
 
@@ -24,7 +26,8 @@ const SideBar:React.FC<IProps> = ({
     onClear, 
     placeholder, 
     value,
-    selectedItemId
+    selectedItemId,
+    isLoading
 }) => {
 
     return(
@@ -35,13 +38,15 @@ const SideBar:React.FC<IProps> = ({
                 onClear={onClear}
                 placeholder={placeholder}
             />
-            <div className="sidebar_container_list">
-                <NavList 
+            <div className="sidebar_list_container">
+                {isLoading ? <Preloader/> : <NavList 
                     items={items}  
                     onSelect={onSelect} 
                     notFoundElement={notFoundElement} 
                     selectedItemId={selectedItemId}
                 />
+                }
+                
             </div>
         </nav>       
     )

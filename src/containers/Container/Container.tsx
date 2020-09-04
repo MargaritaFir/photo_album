@@ -15,14 +15,16 @@ const Container:React.FC = () => {
     const [ value, setValue ] = useState<string>('');
     const [ albums, setAlbums ] = useState<IAlbums[]>([]);
     const [ photos, setPhotos ] = useState<IPhotos[]>([]);
-    const [ selectedUser, setSelectedUser ] = useState<IUserInfo|undefined>()
+    const [ selectedUser, setSelectedUser ] = useState<IUserInfo|undefined>();
+    const [isLoading, setLoading] = useState<boolean>(true)
 
-    const listItems = useMemo(() => filterByName(users, value), [users, value]);
+    const listItems = useMemo(() => filterByName<IUserInfo>(users, value), [users, value]);
 
     useEffect(() => {
         const fetchData = async() => {        
         const usersFetch = await usersApi.getUsers();
-        setUsers(usersFetch);  
+        setUsers(usersFetch);
+        setLoading(false)  
         }
         fetchData();
     }, []);
@@ -66,6 +68,7 @@ const Container:React.FC = () => {
                 value={value}
                 onChange={handleChange}
                 selectedItemId={(selectedUser) ? selectedUser.id : undefined}
+                isLoading={isLoading}
             />
             <Content albums={albums} onSelect={handleSelectPhotos} photos={photos} />
         </div>

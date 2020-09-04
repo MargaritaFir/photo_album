@@ -3,6 +3,7 @@ import Item from './Item/Item';
 import NotFoundItem from './NotFoundItem/NotFoundItem';
 import { IItem } from '../../common/interfaces';
 import './navList.scss';
+import {Preloader} from '../Preloader/Preloader';
 
 interface IProps {
     items:IItem[];
@@ -20,7 +21,9 @@ const NavList:React.FC<IProps> = ({
 
     return (
         <div className='nav_list'>
-            {(items.length) ? items.map((item:IItem) => <Item key={item.id} {...item} onSelect={onSelect} selectedItemId={selectedItemId}/>) : <NotFoundItem notFoundElement={notFoundElement} /> }
+            {(items.length) ? items.map((item:IItem) => <Item key={item.id} {...item} onSelect={onSelect} selectedItemId={selectedItemId}/>) : 
+            <NotFoundItem notFoundElement={notFoundElement} /> 
+            }
         </div>
     )
 }
