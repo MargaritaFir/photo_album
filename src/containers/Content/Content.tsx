@@ -1,11 +1,11 @@
 import React from 'react';
 import './content.scss';
-import {IPhotos, IAlbums} from '../../common/interfaces';
+import {IPhoto, IAlbum} from '../../common/interfaces';
 import AlbumsGrid from '../../components/AlbumsGrid/AlbumsGrid';
 
 interface IProps {
-    albums: IAlbums[];
-    photos:IPhotos[];
+    albums: IAlbum[];
+    photos:IPhoto[];
     onSelect: (id:number) => void;
 }
 

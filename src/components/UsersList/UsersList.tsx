@@ -16,11 +16,11 @@ const UsersList:React.FC<IProps> = ({
     selectedItemId 
 }) => {
 
-    const handleRenterItem = useCallback((item ) => <Item key={item.id} {...item} onSelect={onSelect} selectedItemId={selectedItemId}/>, [selectedItemId, onSelect])
+    const handleRenderItem = useCallback((item ) => <Item key={item.id} {...item} onSelect={onSelect} selectedItemId={selectedItemId}/>, [selectedItemId, onSelect])
 
     return (
         <div className='nav_list'>
-            <List<IItem> items={items} renderItem={handleRenterItem} />
+            <List<IItem> items={items} renderItem={handleRenderItem} />
         </div>
     )
 }

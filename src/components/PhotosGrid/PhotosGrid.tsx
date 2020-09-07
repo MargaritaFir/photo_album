@@ -1,15 +1,19 @@
-import React, { memo } from 'react';
-import { IPhotos } from '../../common/interfaces';
+import React, { memo, useCallback } from 'react';
+import { IPhoto } from '../../common/interfaces';
 import './photos.scss';
+import List from '../List/List';
 
 interface IProps {
-    photos: IPhotos[];
+    photos: IPhoto[];
 }
 
 const PhotosGrid:React.FC<IProps> = ({photos}) => {
+
+    const handleRenderItem = useCallback(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}>{photo.title}</div>, [photos]);
+    
     return(
         <div className="photos">
-            {photos.map(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}>{photo.title}</div>)}
+            <List items={photos} renderItem={handleRenderItem} />
         </div>
     )
 }

@@ -1,9 +1,9 @@
 import React, { memo, useCallback } from 'react';
-import { IAlbums } from '../../../common/interfaces';
+import { IAlbum } from '../../../common/interfaces';
 import './albumCard.scss';
 
 interface IProps {
-    album: IAlbums;
+    album: IAlbum;
     onSelect: (id:number) => void;
 }
 

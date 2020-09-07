@@ -1,17 +1,23 @@
-import React, { memo } from 'react';
-import { IAlbums } from '../../common/interfaces';
+import React, { memo, useCallback } from 'react';
+import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
 import './albums.scss';
+import List from '../List/List';
 
 interface IProps {
-    albums: IAlbums[];
+    albums: IAlbum[];
     onSelect: (id:number) => void;
 }
 
+
+
 const AlbumsGrid:React.FC<IProps> = ({albums, onSelect}) => {
+
+    const handleRenderItem = useCallback(album => <AlbumCard key={album.id} album={album} onSelect={onSelect}/>, [onSelect]);
+
     return(
         <div className="albums_grid">
-            {albums.map(album => <AlbumCard key={album.id} album={album} onSelect={onSelect}/>)}
+            <List<IAlbum> items={albums} renderItem={handleRenderItem}/>
         </div>
     )
 }

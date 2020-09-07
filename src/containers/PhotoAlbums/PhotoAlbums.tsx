@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import  SideBar from '../Sidebar/Sidebar';
 import { URL, placeholder, notFoundElement } from '../../common/constants';
 import UsersApi from '../../common/UsersApi';
-import { IUserInfo, IPhotos, IAlbums } from '../../common/interfaces';
+import { IUserInfo, IPhoto, IAlbum } from '../../common/interfaces';
 import { filterByName } from '../../common/utils/filters';
 import Content from '../Content/Content';
 import './photoAlbums.scss';
@@ -13,8 +13,8 @@ const PhotoAlbums:React.FC = () => {
 
     const [ users, setUsers ] = useState<IUserInfo[]>([]);
     const [ value, setValue ] = useState<string>('');
-    const [ albums, setAlbums ] = useState<IAlbums[]>([]);
-    const [ photos, setPhotos ] = useState<IPhotos[]>([]);
+    const [ albums, setAlbums ] = useState<IAlbum[]>([]);
+    const [ photos, setPhotos ] = useState<IPhoto[]>([]);
     const [ selectedUser, setSelectedUser ] = useState<IUserInfo|undefined>();
     const [isLoading, setLoading] = useState<boolean>(true)
 
