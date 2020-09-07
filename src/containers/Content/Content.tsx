@@ -2,6 +2,7 @@ import React from 'react';
 import './content.scss';
 import {IPhoto, IAlbum} from '../../common/interfaces';
 import AlbumsGrid from '../AlbumsGrid/AlbumsGrid';
+import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 
 interface IProps {
     albums: IAlbum[];
@@ -12,9 +13,10 @@ interface IProps {
 const Content:React.FC<IProps> = ({albums, photos, onSelect}) => {
 
     return(
-    <div className="content">
-        <AlbumsGrid albums={albums} onSelect={onSelect}/>
-    </div>
+        <div className="content">
+            {(albums.length) ? <AlbumsGrid albums={albums} onSelect={onSelect}/> : <EmptyContainer message={'Select a user from the list'}/>}
+            
+        </div>
     )
 }
 
