@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { IPhoto } from '../../common/interfaces';
 import './photos.scss';
-import List from '../List/List';
+import List from '../../components/List/List';
 
 interface IProps {
     photos: IPhoto[];

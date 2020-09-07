@@ -1,7 +1,7 @@
 import React from 'react';
 import './content.scss';
 import {IPhoto, IAlbum} from '../../common/interfaces';
-import AlbumsGrid from '../../components/AlbumsGrid/AlbumsGrid';
+import AlbumsGrid from '../AlbumsGrid/AlbumsGrid';
 
 interface IProps {
     albums: IAlbum[];

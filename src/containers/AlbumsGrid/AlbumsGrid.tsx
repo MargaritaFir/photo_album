@@ -2,14 +2,12 @@ import React, { memo, useCallback } from 'react';
 import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
 import './albums.scss';
-import List from '../List/List';
+import List from '../../components/List/List';
 
 interface IProps {
     albums: IAlbum[];
     onSelect: (id:number) => void;
 }
-
-
 
 const AlbumsGrid:React.FC<IProps> = ({albums, onSelect}) => {
 
