@@ -6,7 +6,7 @@ interface IProps {
     photos: IPhotos[];
 }
 
-const Photos:React.FC<IProps> = ({photos}) => {
+const PhotosGrid:React.FC<IProps> = ({photos}) => {
     return(
         <div className="photos">
             {photos.map(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}>{photo.title}</div>)}
@@ -14,4 +14,4 @@ const Photos:React.FC<IProps> = ({photos}) => {
     )
 }
 
-export default memo(Photos);
+export default memo(PhotosGrid);

@@ -1,13 +1,13 @@
 import React, { memo, useCallback } from 'react';
 import { IAlbums } from '../../../common/interfaces';
-import './album.scss';
+import './albumCard.scss';
 
 interface IProps {
     album: IAlbums;
     onSelect: (id:number) => void;
 }
 
-const Album:React.FC<IProps> = ({album, onSelect}) => {
+const AlbumCard:React.FC<IProps> = ({album, onSelect}) => {
 
     const handleClick = useCallback(() => onSelect(album.id), [album, onSelect])
 
@@ -18,4 +18,4 @@ const Album:React.FC<IProps> = ({album, onSelect}) => {
     )
 }
 
-export default memo(Album);
+export default memo(AlbumCard);

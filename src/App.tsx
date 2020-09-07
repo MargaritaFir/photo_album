@@ -1,10 +1,10 @@
 import React from 'react';
-import Container from './containers/Container/Container';
+import PhotoAlbums from './containers/PhotoAlbums/PhotoAlbums';
 
 function App() {
 
     return (
-        <Container/>
+        <PhotoAlbums/>
     );
 }
 

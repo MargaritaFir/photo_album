@@ -1,7 +1,7 @@
 import React from 'react';
 import './content.scss';
 import {IPhotos, IAlbums} from '../../common/interfaces';
-import Albums from '../../components/Albums/Albums';
+import AlbumsGrid from '../../components/AlbumsGrid/AlbumsGrid';
 
 interface IProps {
     albums: IAlbums[];
@@ -13,7 +13,7 @@ const Content:React.FC<IProps> = ({albums, photos, onSelect}) => {
 
     return(
     <div className="content">
-        <Albums albums={albums} onSelect={onSelect}/>
+        <AlbumsGrid albums={albums} onSelect={onSelect}/>
     </div>
     )
 }

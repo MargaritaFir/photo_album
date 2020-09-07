@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
-import  SideBar from '../../containers/Sidebar/Sidebar';
+import  SideBar from '../Sidebar/Sidebar';
 import { URL, placeholder, notFoundElement } from '../../common/constants';
 import UsersApi from '../../common/UsersApi';
 import { IUserInfo, IPhotos, IAlbums } from '../../common/interfaces';
 import { filterByName } from '../../common/utils/filters';
 import Content from '../Content/Content';
-import './container.scss';
+import './photoAlbums.scss';
 
 const usersApi = new UsersApi(URL);
 
-const Container:React.FC = () => {
+const PhotoAlbums:React.FC = () => {
 
     const [ users, setUsers ] = useState<IUserInfo[]>([]);
     const [ value, setValue ] = useState<string>('');
@@ -58,7 +58,7 @@ const Container:React.FC = () => {
     const getPhotos =(albumId:number) => usersApi.getPhotos(albumId);
     
     return (
-        <div className="container">
+        <div className="photo_albums">
             <SideBar 
                 items={(value) ? listItems : users} 
                 notFoundElement={notFoundElement} 
@@ -75,4 +75,4 @@ const Container:React.FC = () => {
     )
 }
 
-export default Container;
+export default PhotoAlbums;
