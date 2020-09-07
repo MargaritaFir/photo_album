@@ -1,17 +1,20 @@
-import React, { memo } from 'react';
+import React, {useCallback} from 'react';
 
 interface IProps<T>{
     items: T[];
-    renderItem: (item: T) => void;
+    renderItem: (item: T) => React.ReactNode;
 }
+
 
 function List<T>(props: IProps<T>): JSX.Element {
 
+    const handleRenderItem = useCallback(item => props.renderItem(item), [props])
+
     return (
         <React.Fragment>
-            {props.items.map(item => props.renderItem(item))}
+            {props.items.map(handleRenderItem)}
         </React.Fragment>
     )
 }
 
-export default memo(List);
+export default List;

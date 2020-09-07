@@ -1,9 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import Item from './Item/Item';
 import { IItem } from '../../common/interfaces';
 import './usersList.scss';
 import List from '../List/List'
-
 
 interface IProps {
     items:IItem[];
@@ -17,9 +16,11 @@ const UsersList:React.FC<IProps> = ({
     selectedItemId 
 }) => {
 
+    const handleRenterItem = useCallback((item ) => <Item key={item.id} {...item} onSelect={onSelect} selectedItemId={selectedItemId}/>, [selectedItemId, onSelect])
+
     return (
         <div className='nav_list'>
-            <List items={items} renderItem={(item:any) => <Item key={item.id} {...item} onSelect={onSelect} selectedItemId={selectedItemId}/>} />
+            <List<IItem> items={items} renderItem={handleRenterItem} />
         </div>
     )
 }
