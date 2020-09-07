@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import Input from '../../components/Input/Input';
-import NavList from '../../components/NavList/NavList';
+import UsersList from '../../components/UsersList/UsersList';
 import { IItem } from '../../common/interfaces';
 import './sidebar.scss';
-import { Preloader } from '../../components/Preloader/Preloader';
+import Preloader from '../../components/Preloader/Preloader';
+import NotFoundItem from '../../components/NotFoundItem/NotFoundItem';
 
 interface IProps {
     items:IItem[];
@@ -39,14 +40,12 @@ const SideBar:React.FC<IProps> = ({
                 placeholder={placeholder}
             />
             <div className="sidebar_list_container">
-                {isLoading ? <Preloader/> : <NavList 
-                    items={items}  
-                    onSelect={onSelect} 
-                    notFoundElement={notFoundElement} 
-                    selectedItemId={selectedItemId}
-                />
-                }
-                
+                { isLoading ?  
+                    <Preloader/> : 
+                    (items.length) ? 
+                        <UsersList items={items} onSelect={onSelect} selectedItemId={selectedItemId} /> : 
+                        <NotFoundItem notFoundElement={notFoundElement}/> 
+                }   
             </div>
         </nav>       
     )

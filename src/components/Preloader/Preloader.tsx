@@ -1,7 +1,7 @@
-import React, { memo } from 'react';
+import React from 'react';
 import './preloader.scss';
 
-export const Preloader:React.FC = () => {
+const Preloader:React.FC = () => {
 
     return (
         <div className='preloader_container'>
@@ -23,3 +23,5 @@ export const Preloader:React.FC = () => {
         
     )
 }
+
+export default Preloader;
