@@ -7,6 +7,7 @@ import { filterByName } from '../../common/utils/filters';
 import Content from '../Content/Content';
 import './photoAlbums.scss';
 
+
 const usersApi = new UsersApi(URL);
 
 const PhotoAlbums:React.FC = () => {
@@ -70,7 +71,7 @@ const PhotoAlbums:React.FC = () => {
                 selectedItemId={(selectedUser) ? selectedUser.id : undefined}
                 isLoading={isLoading}
             />
-            <Content albums={albums} onSelect={handleSelectPhotos} photos={photos} />
+            <Content albums={albums} photos={photos} onSelect={handleSelectPhotos}/>
         </div>
     )
 }

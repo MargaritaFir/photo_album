@@ -5,7 +5,10 @@ interface IProps {
     id: number;
 }
 
-const Button:React.FC<IProps> = ({onClick, id}) => {
+const Button:React.FC<IProps> = ({
+    onClick,
+    id
+}) => {
 
     const onClickCallback = useCallback(() => onClick(id), [onClick, id])
 

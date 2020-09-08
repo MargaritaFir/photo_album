@@ -1,4 +1,5 @@
 import React, {useCallback, memo} from 'react';
+import  { Link } from "react-router-dom";
 import './item.scss';
 
 interface IProps {
@@ -15,13 +16,15 @@ const Item:React.FC<IProps> = ({
     selectedItemId
 }) => {
 
-    const handleClick = useCallback(() => onSelect(id), [id, onSelect]);
     const classList = (selectedItemId !== id) ? "item" : "item selected";
+    const handleClick = useCallback(() => onSelect(id), [id, onSelect]);
 
     return (
-        <div className={classList} id={`item_${id}`} onClick={handleClick}>
-            <span>{name}</span>
-        </div>
+        <Link to={`/albums?userId=${id}`}>
+            <div className={classList} id={`item_${id}`} onClick={handleClick}>
+                <span>{name}</span>
+            </div>
+        </Link>
     )
 };
 

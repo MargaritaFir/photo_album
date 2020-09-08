@@ -7,9 +7,17 @@ import List from '../../components/List/List';
 interface IProps {
     albums: IAlbum[];
     onSelect: (id:number) => void;
+    userId: string | null;
+
 }
 
-const AlbumsGrid:React.FC<IProps> = ({albums, onSelect}) => {
+const AlbumsGrid:React.FC<IProps> = ({
+    albums, 
+    onSelect, 
+    userId 
+}) => {
+
+    console.log('userId', userId);
 
     const handleRenderItem = useCallback(album => <AlbumCard key={album.id} album={album} onSelect={onSelect}/>, [onSelect]);
 
