@@ -18,7 +18,7 @@ const PhotosGrid:React.FC<IProps> = ({
     console.log('userId', userId);
     console.log('albumId', albumId);
 
-    const renderItemCallBack = useCallback(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}>{photo.title}</div> , []);
+    const renderItemCallBack = useCallback(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}><span>{photo.title}</span></div> , []);
     
     return(
         <div className="photos">

@@ -7,8 +7,12 @@
     text-align: center;
     padding: 10px;
     border: 2px solid rgb(3, 122, 77);
-    margin:2px;
+    margin:10px;
     font-weight: 600;
     cursor: pointer;
     border-radius: 5px;
+
+    span {
+        margin: 0 auto;
+    }
 }

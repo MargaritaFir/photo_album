@@ -23,14 +23,14 @@ const ContentRouter:React.FC<IProps> = ({
 
     let query = useQuery();
 
-    const renderAlbumCallBack = useCallback(() => <AlbumsGrid albums={albums} onSelect={onSelect}  userId={query.get("userId")}/>, [albums, onSelect, query] );
-    const renderPhotosCallBack = useCallback(() => <PhotosGrid photos={photos} userId={query.get("userId")} albumId={query.get("albumId")} />, [photos, query] );
+    const renderAlbumCallback = useCallback(() => <AlbumsGrid albums={albums} onSelect={onSelect}  userId={query.get("userId")}/>, [albums, onSelect, query] );
+    const renderPhotosCallback = useCallback(() => <PhotosGrid photos={photos} userId={query.get("userId")} albumId={query.get("albumId")} />, [photos, query] );
 
     
     return (
         <Switch>            
-            <Route path='/albums' render={renderAlbumCallBack} />
-            <Route path='/photos' render={renderPhotosCallBack} />
+            <Route path='/albums' render={renderAlbumCallback} />
+            <Route path='/photos' render={renderPhotosCallback} />
         </Switch>
 
     )

@@ -17,11 +17,11 @@ const Item:React.FC<IProps> = ({
 }) => {
 
     const classList = (selectedItemId !== id) ? "item" : "item selected";
-    const handleClick = useCallback(() => onSelect(id), [id, onSelect]);
+    const onClickCallback = useCallback(() => onSelect(id), [id, onSelect]);
 
     return (
         <Link to={`/albums?userId=${id}`}>
-            <div className={classList} id={`item_${id}`} onClick={handleClick}>
+            <div className={classList} id={`item_${id}`} onClick={onClickCallback}>
                 <span>{name}</span>
             </div>
         </Link>

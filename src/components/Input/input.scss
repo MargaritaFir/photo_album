@@ -9,7 +9,11 @@
         border: 1.5px solid rgb(3, 122, 77);
         border-radius: 5px;
         padding-left: 10px;
+        outline: none;
 
+        &:focus {
+            border: 2px solid bisque;
+        }
     }
 
     .clear_input {
@@ -22,13 +26,14 @@
         right:0; 
         bottom: 25%;
         cursor: pointer;
-    }
+    
 
-        &:hover {
-            color: rgb(201, 29, 101);
-            font-weight: bold;
-            font-size: 20px;
-        }
+            &:hover {
+                color: rgb(201, 29, 101);
+                font-weight: bold;
+                font-size: 20px;
+            }
+    }
 
 
     &:hover .clear_input {

@@ -13,11 +13,11 @@ const AlbumCard:React.FC<IProps> = ({
     onSelect
 }) => {
 
-    const handleClick = useCallback(() => onSelect(album.id), [album, onSelect])
+    const onClickCallback = useCallback(() => onSelect(album.id), [album, onSelect])
 
     return(
         <Link to={`/photos?albumId=${album.id}`}>
-            <div className="album" id={`album_${album.id}`} onClick={handleClick} >
+            <div className="album" id={`album_${album.id}`} onClick={onClickCallback} >
                 <span>{album.title}</span>
             </div>
         </Link>

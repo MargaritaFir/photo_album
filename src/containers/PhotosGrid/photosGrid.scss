@@ -2,18 +2,24 @@
     display: flex;
     flex-wrap: wrap;
     justify-items: flex-start;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: flex-start;
-    width: 70%;
+    text-align: center;
+    width: 100%;
+    height:100%;
     .photo {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
         display: flex;
         justify-items: center;
         align-items: center;
-        text-align: center;
         padding: 10px;
-        border: 1px solid #f89bb4;
-        margin:2px; 
+        border: 1px solid #0b064d;
+        margin:5px; 
+        border-radius: 5px;
+
+        span {
+            margin: 0 auto;
+        }
     }
 }

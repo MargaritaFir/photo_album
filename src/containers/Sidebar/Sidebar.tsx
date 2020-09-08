@@ -44,7 +44,7 @@ const SideBar:React.FC<IProps> = ({
                     <Preloader/> : 
                     (items.length) ? 
                         <UsersList items={items} onSelect={onSelect} selectedItemId={selectedItemId} /> : 
-                        <NotFoundItem notFoundElement={notFoundElement}/> 
+                            <NotFoundItem notFoundElement={notFoundElement}/> 
                 }   
             </div>
         </nav>       

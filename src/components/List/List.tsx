@@ -8,11 +8,11 @@ interface IProps<T>{
 
 function List<T>(props: IProps<T>): JSX.Element {
 
-    const handleRenderItem = useCallback(item => props.renderItem(item), [props])
+    const renderItemCallback = useCallback(item => props.renderItem(item), [props])
 
     return (
         <React.Fragment>
-            {props.items.map(handleRenderItem)}
+            {props.items.map(renderItemCallback)}
         </React.Fragment>
     )
 }

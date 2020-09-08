@@ -1,7 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
-import './albums.scss';
+import './albumsGrid.scss';
 import List from '../../components/List/List';
 
 interface IProps {
@@ -19,11 +19,11 @@ const AlbumsGrid:React.FC<IProps> = ({
 
     console.log('userId', userId);
 
-    const handleRenderItem = useCallback(album => <AlbumCard key={album.id} album={album} onSelect={onSelect}/>, [onSelect]);
+    const renderItemCallback = useCallback(album => <AlbumCard key={album.id} album={album} onSelect={onSelect}/>, [onSelect]);
 
     return(
         <div className="albums_grid">
-            <List<IAlbum> items={albums} renderItem={handleRenderItem}/>
+            <List<IAlbum> items={albums} renderItem={renderItemCallback}/>
         </div>
     )
 }

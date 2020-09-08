@@ -15,11 +15,11 @@ const Input:React.FC<IProps> = ({
     onClear 
 }) => {
     
-    const handleChange = useCallback((e) => onChange(e), [onChange]);   
+    const onChangeCallback = useCallback((e) => onChange(e), [onChange]);   
 
     return (
         <div className='input_container'>
-            <input value={value} placeholder={placeholder} onChange={handleChange}  autoComplete="off" />
+            <input value={value} placeholder={placeholder} onChange={onChangeCallback}  autoComplete="off" />
             <span className="clear_input" onClick={onClear} > &times;</span>
         </div>    
     )
