@@ -3,6 +3,9 @@ import { observer } from 'mobx-react';
 import './photosGrid.scss';
 import List from '../../components/List/List';
 import { AlbumsGridContext, PhotosGridContext } from '../../context/Context';
+import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
+import Preloader from '../../components/Preloader/Preloader';
+
 
 interface IProps {
     userId: string | null;
@@ -30,7 +33,13 @@ const PhotosGrid:React.FC<IProps> = ({
     
     return(
         <div className="photos">
-            <List items={photosContext.photos} renderItem={renderItemCallBack} />
+            { 
+                (photosContext.isLoading) ? 
+                    <Preloader/> : 
+                        (!photosContext.isEmpty) ? 
+                            <List items={photosContext.photos} renderItem={renderItemCallBack} />: 
+                                <EmptyContainer message={'This album don\'t have photos'}/> 
+            }
         </div>
     )
 }

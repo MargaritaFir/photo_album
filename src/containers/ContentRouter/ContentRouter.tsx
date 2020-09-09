@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import  { Route, Switch, useLocation } from "react-router-dom";
 import AlbumsGrid from '../AlbumsGrid/AlbumsGrid';
 import PhotosGrid from '../PhotosGrid/PhotosGrid';
+import { observer } from 'mobx-react';
 
 
 function useQuery() {
@@ -25,4 +26,4 @@ const ContentRouter:React.FC = () => {
     )
 }
 
-export default ContentRouter;
+export default observer(ContentRouter);
