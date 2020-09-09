@@ -1,4 +1,4 @@
-import { observable, computed, action, reaction } from 'mobx';
+import { observable, computed, action } from 'mobx';
 import {actionAsync, task} from "mobx-utils"
 import { IUserInfo } from '../common/interfaces';
 import UsersApi from '../common/UsersApi';
@@ -20,7 +20,7 @@ export class SideBarStore {
     @computed get users(): IUserInfo[] {
         return (this.filterValue) ? filterByName(this._users, this.filterValue):this._users;
     };
-    
+
     @computed get isEmpty ()  {
         return (this.users.length) ? false : true;
     };
