@@ -1,8 +1,8 @@
 import React, {useCallback} from 'react';
 
 interface IProps {
-    onClick:(id: number) => void;
-    id: number;
+    onClick:(id:number|string) => void;
+    id:number|string;
 }
 
 const Button:React.FC<IProps> = ({

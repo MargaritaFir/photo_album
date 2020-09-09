@@ -1,13 +1,10 @@
 import React, {useCallback} from 'react';
-import  { Route, Switch, useLocation } from "react-router-dom";
+import  { Route, Switch } from "react-router-dom";
 import AlbumsGrid from '../AlbumsGrid/AlbumsGrid';
 import PhotosGrid from '../PhotosGrid/PhotosGrid';
 import { observer } from 'mobx-react';
+import useQuery from '../../hooks/useQuery';
 
-
-function useQuery() {
-    return new URLSearchParams(useLocation().search);
-}
 
 const ContentRouter:React.FC = () => {
 

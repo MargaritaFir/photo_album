@@ -14,7 +14,7 @@ class UsersApi {
         });
     };
 
-    getAlbums(userId:number){
+    getAlbums(userId:number|string){
         return fetch(`${this.url}/albums?userId=${userId}`)
         .then((response) => response.json())
         .then(data => {
@@ -22,7 +22,7 @@ class UsersApi {
         });
     };
 
-    getPhotos(albumId:number){
+    getPhotos(albumId:number|string){
         return fetch(`${this.url}/photos?albumId=${albumId}`)
         .then((response) => response.json())
         .then(data => {

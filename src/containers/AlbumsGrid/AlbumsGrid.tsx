@@ -4,7 +4,7 @@ import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
 import './albumsGrid.scss';
 import List from '../../components/List/List';
-import {AlbumsGridContext} from '../../context/Context';
+import { AlbumsGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import Preloader from '../../components/Preloader/Preloader';
 
@@ -16,13 +16,13 @@ interface IProps {
 const AlbumsGrid:React.FC<IProps> = ({ userId }) => {
 
     const albumsGridContext = useContext(AlbumsGridContext);
-    const {albums, isLoading, isEmpty, loadAlbums} = albumsGridContext;
+    const { albums, isLoading, isEmpty, loadAlbums } = albumsGridContext;
 
     useEffect(() => {
-        if(userId) loadAlbums(parseInt(userId))
+        if(userId) loadAlbums(userId)
     }, [loadAlbums, userId ]);
 
-    const renderItemCallback = useCallback(album => <AlbumCard key={album.id} album={album}/>, []);
+    const renderItemCallback = useCallback(album => <AlbumCard key={album.id} album={album} userId={userId}/>, [userId]);
 
     return(
         <>

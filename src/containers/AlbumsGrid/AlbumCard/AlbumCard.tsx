@@ -6,12 +6,13 @@ import './albumCard.scss';
 
 interface IProps {
     album: IAlbum;
+    userId: string | null; 
 }
 
-const AlbumCard:React.FC<IProps> = ({ album }) => {
+const AlbumCard:React.FC<IProps> = ({ album, userId }) => {
 
     return(
-        <Link to={`/photos?albumId=${album.id}`}>
+        <Link to={`/photos?albumId=${album.id}&userId=${userId}`}>
             <div className="album" id={`album_${album.id}`} >
                 <span>{album.title}</span>
             </div>

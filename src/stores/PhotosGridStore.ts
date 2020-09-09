@@ -20,7 +20,7 @@ class PhotosGridStore {
     }
 
     @actionAsync 
-    loadPhotos = async(albumId: number) => {
+    loadPhotos = async(albumId:number|string) => {
         this.isLoading = true;
         try {
             const photos = await task(this.usersApi.getPhotos(albumId));

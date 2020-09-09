@@ -5,6 +5,7 @@ import List from '../../components/List/List';
 import { AlbumsGridContext, PhotosGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import Preloader from '../../components/Preloader/Preloader';
+import Button from '../../components/Button/Button';
 
 
 interface IProps {
@@ -22,7 +23,7 @@ const PhotosGrid:React.FC<IProps> = ({
 
 
     useEffect(() => {
-        if(albumId) photosContext.loadPhotos(parseInt(albumId));
+        if(albumId) photosContext.loadPhotos(albumId);
     }, [albumId, photosContext])
 
 
@@ -33,6 +34,7 @@ const PhotosGrid:React.FC<IProps> = ({
     
     return(
         <div className="photos">
+            {userId && <Button id={userId} onClick={() => albumsContext.loadAlbums(userId)} />}
             { 
                 (photosContext.isLoading) ? 
                     <Preloader/> : 
