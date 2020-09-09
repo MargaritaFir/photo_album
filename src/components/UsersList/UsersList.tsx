@@ -1,4 +1,5 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback } from 'react';
+import { observer } from 'mobx-react';
 import Item from './Item/Item';
 import { IItem } from '../../common/interfaces';
 import './usersList.scss';
@@ -25,4 +26,4 @@ const UsersList:React.FC<IProps> = ({
     )
 }
 
-export default memo(UsersList);
+export default observer(UsersList);

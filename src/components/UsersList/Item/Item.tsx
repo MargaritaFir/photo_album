@@ -1,5 +1,6 @@
 import React, {useCallback, memo} from 'react';
 import  { Link } from "react-router-dom";
+import { observer } from 'mobx-react';
 import './item.scss';
 
 interface IProps {
@@ -28,4 +29,4 @@ const Item:React.FC<IProps> = ({
     )
 };
 
-export default memo(Item);
+export default observer(Item);
