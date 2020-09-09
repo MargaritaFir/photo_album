@@ -1,19 +1,27 @@
-import React, { memo, useCallback } from 'react';
-import { IPhoto } from '../../common/interfaces';
+import React, { useCallback, useContext, useEffect } from 'react';
+import { observer } from 'mobx-react';
 import './photosGrid.scss';
 import List from '../../components/List/List';
+import { AlbumsGridContext, PhotosGridContext } from '../../context/Context';
 
 interface IProps {
-    photos: IPhoto[];
     userId: string | null;
     albumId: string | null;
 }
 
 const PhotosGrid:React.FC<IProps> = ({
-    photos, 
     userId, 
     albumId
 }) => {
+
+    const albumsContext = useContext(AlbumsGridContext);
+    const photosContext = useContext(PhotosGridContext);
+
+
+    useEffect(() => {
+        if(albumId) photosContext.loadPhotos(parseInt(albumId));
+    }, [albumId, photosContext])
+
 
     console.log('userId', userId);
     console.log('albumId', albumId);
@@ -22,9 +30,9 @@ const PhotosGrid:React.FC<IProps> = ({
     
     return(
         <div className="photos">
-            <List items={photos} renderItem={renderItemCallBack} />
+            <List items={photosContext.photos} renderItem={renderItemCallBack} />
         </div>
     )
 }
 
-export default memo(PhotosGrid);
+export default observer(PhotosGrid);

@@ -1,27 +1,22 @@
-import React, { memo, useCallback } from 'react';
+import React from 'react';
+import { observer } from 'mobx-react';
 import  { Link } from "react-router-dom";
 import { IAlbum } from '../../../common/interfaces';
 import './albumCard.scss';
 
 interface IProps {
     album: IAlbum;
-    onSelect: (id:number) => void;
 }
 
-const AlbumCard:React.FC<IProps> = ({
-    album, 
-    onSelect
-}) => {
-
-    const onClickCallback = useCallback(() => onSelect(album.id), [album, onSelect])
+const AlbumCard:React.FC<IProps> = ({ album }) => {
 
     return(
         <Link to={`/photos?albumId=${album.id}`}>
-            <div className="album" id={`album_${album.id}`} onClick={onClickCallback} >
+            <div className="album" id={`album_${album.id}`} >
                 <span>{album.title}</span>
             </div>
         </Link>
     )
 }
 
-export default memo(AlbumCard);
+export default observer(AlbumCard);

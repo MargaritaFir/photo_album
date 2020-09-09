@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useCallback } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Input from '../../components/Input/Input';
 import UsersList from '../../components/UsersList/UsersList';
 import './sidebar.scss';
 import Preloader from '../../components/Preloader/Preloader';
 import NotFoundItem from '../../components/NotFoundItem/NotFoundItem';
 import { observer } from 'mobx-react';
-import { StoreContext } from '../../context/Context'
+import { SideBarContext } from '../../context/Context'
 
 interface IProps {
     notFoundElement:string;
@@ -17,9 +17,9 @@ const SideBar:React.FC<IProps> = ({
     placeholder, 
 }) => {
 
-    const store = useContext(StoreContext);
+    const sideBarContext = useContext(SideBarContext);
 
-    const {loadUsers, filterValue, setFilterValue, users, selectUser, selectedUserId, setClearValue, isLoading, isEmpty } = store;
+    const { loadUsers, filterValue, setFilterValue, users, selectUser, selectedUserId, setClearValue, isLoading, isEmpty } = sideBarContext;
 
     useEffect(() => { 
         loadUsers(); 

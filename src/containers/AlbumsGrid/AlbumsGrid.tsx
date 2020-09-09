@@ -1,25 +1,26 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback, useContext, useEffect } from 'react';
+import { observer } from 'mobx-react';
 import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
 import './albumsGrid.scss';
 import List from '../../components/List/List';
+import {AlbumsGridContext} from '../../context/Context';
 
 interface IProps {
-    albums: IAlbum[];
-    onSelect: (id:number) => void;
     userId: string | null;
 
 }
 
-const AlbumsGrid:React.FC<IProps> = ({
-    albums, 
-    onSelect, 
-    userId 
-}) => {
+const AlbumsGrid:React.FC<IProps> = ({ userId }) => {
 
-    console.log('userId', userId);
+    const albumsGridContext = useContext(AlbumsGridContext);
+    const {albums, isLoading, isEmpty, loadAlbums} = albumsGridContext;
 
-    const renderItemCallback = useCallback(album => <AlbumCard key={album.id} album={album} onSelect={onSelect}/>, [onSelect]);
+    useEffect(() => {
+        if(userId) loadAlbums(parseInt(userId))
+    }, [loadAlbums, userId ]);
+
+    const renderItemCallback = useCallback(album => <AlbumCard key={album.id} album={album}/>, []);
 
     return(
         <div className="albums_grid">
@@ -28,4 +29,4 @@ const AlbumsGrid:React.FC<IProps> = ({
     )
 }
 
-export default memo(AlbumsGrid);
+export default observer(AlbumsGrid);

@@ -1,4 +1,4 @@
-import React, {useCallback, memo} from 'react';
+import React, { useCallback } from 'react';
 import  { Link } from "react-router-dom";
 import { observer } from 'mobx-react';
 import './item.scss';
