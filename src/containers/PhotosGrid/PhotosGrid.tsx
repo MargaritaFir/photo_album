@@ -1,8 +1,8 @@
-import React, { useCallback, useContext, useEffect } from 'react';
+import React, { useCallback, useContext } from 'react';
 import { observer } from 'mobx-react';
 import './photosGrid.scss';
 import List from '../../components/List/List';
-import { AlbumsGridContext, PhotosGridContext } from '../../context/Context';
+import { PhotosGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import Preloader from '../../components/Preloader/Preloader';
 import Button from '../../components/Button/Button';
@@ -10,36 +10,30 @@ import Button from '../../components/Button/Button';
 
 interface IProps {
     userId: string | null;
-    albumId: string | null;
+    onClickReturn: (userId: string) => void
 }
 
-const PhotosGrid:React.FC<IProps> = ({
+const PhotosGrid:React.FC<IProps> = ({ 
     userId, 
-    albumId
+    onClickReturn 
 }) => {
 
-    const albumsContext = useContext(AlbumsGridContext);
-    const photosContext = useContext(PhotosGridContext);
-
-
-    useEffect(() => {
-        if(albumId) photosContext.loadPhotos(albumId);
-    }, [albumId, photosContext])
-
-
-    console.log('userId', userId);
-    console.log('albumId', albumId);
+    const { isEmpty, isLoading, photos } = useContext(PhotosGridContext);
 
     const renderItemCallBack = useCallback(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}><span>{photo.title}</span></div> , []);
+
+    const onClickButtonCallback = useCallback(() => {
+        if(userId) onClickReturn(userId)
+    }, [userId, onClickReturn] )
     
     return(
         <div className="photos">
-            {userId && <Button id={userId} onClick={() => albumsContext.loadAlbums(userId)} />}
+            { userId && <Button id={userId} onClick={onClickButtonCallback}> Return by albums</Button> }
             { 
-                (photosContext.isLoading) ? 
+                (isLoading) ? 
                     <Preloader/> : 
-                        (!photosContext.isEmpty) ? 
-                            <List items={photosContext.photos} renderItem={renderItemCallBack} />: 
+                        (!isEmpty) ? 
+                            <List items={photos} renderItem={renderItemCallBack} />: 
                                 <EmptyContainer message={'This album don\'t have photos'}/> 
             }
         </div>

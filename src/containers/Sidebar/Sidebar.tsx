@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import Input from '../../components/Input/Input';
 import UsersList from '../../components/UsersList/UsersList';
-import './sidebar.scss';
 import Preloader from '../../components/Preloader/Preloader';
 import NotFoundItem from '../../components/NotFoundItem/NotFoundItem';
 import { observer } from 'mobx-react';
-import { SideBarContext } from '../../context/Context'
+import { SideBarContext } from '../../context/Context';
+import useQuery from '../../hooks/useQuery';
+import './sidebar.scss';
 
 interface IProps {
     notFoundElement:string;
@@ -16,14 +17,15 @@ const SideBar:React.FC<IProps> = ({
     notFoundElement,
     placeholder, 
 }) => {
+    let query = useQuery();
 
-    const sideBarContext = useContext(SideBarContext);
+    const { filterValue, setFilterValue, users, selectUser, selectedUserId, setClearValue, isLoading, isEmpty } = useContext(SideBarContext);
 
-    const { loadUsers, filterValue, setFilterValue, users, selectUser, selectedUserId, setClearValue, isLoading, isEmpty } = sideBarContext;
+    const userId = useMemo( () => query.get('userId'), [query]);
 
     useEffect(() => { 
-        loadUsers(); 
-    }, [loadUsers]);
+        if(userId && !isLoading) selectUser(parseInt(userId));
+    }, [selectUser, userId, isLoading]);
 
     return(
         <nav className="sidebar">

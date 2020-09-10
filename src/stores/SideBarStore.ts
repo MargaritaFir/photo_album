@@ -41,10 +41,14 @@ export class SideBarStore {
     @action setFilterValue = (value:string) => {    
         this.filterValue = value;       
     };
-    @action selectUser = (userId: number) =>{
-        const user = this.users.find(user => user.id === userId);
-        this.selectedUserId = user!.id;
-        console.log('store selected user', this.selectedUserId)
+    @action selectUser = (userId: number) => {
+            const user = this._users.find(user => user.id === userId);
+            if(user) {
+                this.selectedUserId = user.id;
+            } else {
+                this.selectedUserId = undefined;
+            }
+
     };
 	@action setClearValue = () => {
         this.filterValue = ''; 
