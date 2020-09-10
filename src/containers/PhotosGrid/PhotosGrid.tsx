@@ -6,6 +6,7 @@ import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import Preloader from '../../components/Preloader/Preloader';
 import Button from '../../components/Button/Button';
 import './styles.scss';
+import { Link } from 'react-router-dom';
 
 
 interface IProps {
@@ -27,16 +28,29 @@ const PhotosGrid:React.FC<IProps> = ({
     }, [userId, onClickReturn] )
     
     return(
-        <div className="photos">
-            { userId && <Button id={userId} onClick={onClickButtonCallback}> Return by albums</Button> }
-            { 
-                (isLoading) ? 
-                    <Preloader/> : 
-                        (!isEmpty) ? 
-                            <List items={photos} renderItem={renderItemCallBack} />: 
-                                <EmptyContainer message={'This album don\'t have photos'}/> 
-            }
-        </div>
+        <>
+            <div className="button_container">  
+                { userId && 
+                    <Link to={`/albums?userId=${userId}`}>
+                        <Button 
+                            id={userId} 
+                            onClick={onClickButtonCallback} 
+                            text={'Go back to user\'s albums'}
+                        />
+                    </Link> 
+                }
+            </div>
+            <div className="photos">
+                { 
+                    (isLoading) ? 
+                        <Preloader/> : 
+                            (!isEmpty) ? 
+                                <List items={photos} renderItem={renderItemCallBack} />: 
+                                    <EmptyContainer message={'This album don\'t have photos!'}/> 
+                }
+            </div>
+        </>
+        
     )
 }
 
