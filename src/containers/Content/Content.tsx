@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import ContentRouter from '../ContentRouter/ContentRouter';
-import './content.scss';
+import './styles.scss';
 
 const Content:React.FC = () => {
 

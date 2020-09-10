@@ -6,7 +6,7 @@ import NotFoundItem from '../../components/NotFoundItem/NotFoundItem';
 import { observer } from 'mobx-react';
 import { SideBarContext } from '../../context/Context';
 import useQuery from '../../hooks/useQuery';
-import './sidebar.scss';
+import './styles.scss';
 
 interface IProps {
     notFoundElement:string;
@@ -21,7 +21,7 @@ const SideBar:React.FC<IProps> = ({
 
     const { filterValue, setFilterValue, users, selectUser, selectedUserId, setClearValue, isLoading, isEmpty } = useContext(SideBarContext);
 
-    const userId = useMemo( () => query.get('userId'), [query]);
+    const userId = useMemo(() => query.get('userId'), [query]);
 
     useEffect(() => { 
         if(userId && !isLoading) selectUser(parseInt(userId));

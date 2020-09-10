@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
-import './input.scss';
+import './styles.scss';
 
 interface IProps {
     value: string;  

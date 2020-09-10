@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import  { Link } from "react-router-dom";
 import { IAlbum } from '../../../common/interfaces';
-import './albumCard.scss';
+import './styles.scss';
 
 interface IProps {
     album: IAlbum;

@@ -2,11 +2,11 @@ import React, { useCallback, useContext } from 'react';
 import { observer } from 'mobx-react';
 import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
-import './albumsGrid.scss';
 import List from '../../components/List/List';
 import { AlbumsGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import Preloader from '../../components/Preloader/Preloader';
+import './styles.scss';
 
 interface IProps {
     userId: string | null;

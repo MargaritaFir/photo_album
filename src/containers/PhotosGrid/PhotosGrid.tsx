@@ -1,11 +1,11 @@
 import React, { useCallback, useContext } from 'react';
 import { observer } from 'mobx-react';
-import './photosGrid.scss';
 import List from '../../components/List/List';
 import { PhotosGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import Preloader from '../../components/Preloader/Preloader';
 import Button from '../../components/Button/Button';
+import './styles.scss';
 
 
 interface IProps {

@@ -3,8 +3,8 @@ import  SideBar from '../Sidebar/Sidebar';
 import { placeholder, notFoundElement } from '../../common/constants';
 import Content from '../Content/Content';
 import { SideBarContext } from '../../context/Context';
-import './photoAlbums.scss';
 import { observer } from 'mobx-react';
+import './styles.scss';
 
 
 

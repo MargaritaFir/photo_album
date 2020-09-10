@@ -2,8 +2,8 @@ import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
 import Item from './Item/Item';
 import { IItem } from '../../common/interfaces';
-import './usersList.scss';
-import List from '../List/List'
+import List from '../List/List';
+import './styles.scss';
 
 interface IProps {
     items:IItem[];

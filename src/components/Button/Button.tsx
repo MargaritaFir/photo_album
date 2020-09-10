@@ -1,4 +1,5 @@
 import React, {useCallback} from 'react';
+import './styles.scss';
 
 interface IProps {
     onClick:(id:number|string) => void;

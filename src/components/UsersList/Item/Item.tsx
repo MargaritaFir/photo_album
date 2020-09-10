@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import  { Link } from "react-router-dom";
 import { observer } from 'mobx-react';
-import './item.scss';
+import './styles.scss';
 
 interface IProps {
     id: number,
