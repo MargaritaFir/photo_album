@@ -10,45 +10,35 @@ import { Link } from 'react-router-dom';
 
 
 interface IProps {
-    userId: string | null;
-    onClickReturn: (userId: string) => void
+    userId: string;
 }
 
 const PhotosGrid:React.FC<IProps> = ({ 
-    userId, 
-    onClickReturn 
+    userId,  
 }) => {
 
     const { isEmpty, isLoading, photos } = useContext(PhotosGridContext);
 
     const renderItemCallBack = useCallback(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}><span>{photo.title}</span></div> , []);
 
-    const onClickButtonCallback = useCallback(() => {
-        if(userId) onClickReturn(userId)
-    }, [userId, onClickReturn] )
     
     return(
         <>
             <div className="button_container">  
-                { userId && 
-                    <Link to={`/albums?userId=${userId}`}>
-                        <Button 
-                            id={userId} 
-                            onClick={onClickButtonCallback} 
-                            text={'Go back to user\'s albums'}
-                        />
-                    </Link> 
-                }
+                <Link to={`/albums?userId=${userId}`}>
+                    <Button id={userId} text={'Go back to user\'s albums'}/>
+                </Link> 
             </div>
-            <div className="photos">
-                { 
-                    (isLoading) ? 
-                        <Preloader/> : 
-                            (!isEmpty) ? 
-                                <List items={photos} renderItem={renderItemCallBack} />: 
-                                    <EmptyContainer message={'This album don\'t have photos!'}/> 
-                }
-            </div>
+
+            { isLoading && <Preloader/> }
+            { !isLoading && isEmpty && <EmptyContainer message={'This album don\'t have photos!'}/> } 
+            {
+                !isLoading && 
+                !isEmpty && (
+                    <div className="photos">
+                        <List items={photos} renderItem={renderItemCallBack} />    
+                    </div>
+            )}
         </>
         
     )

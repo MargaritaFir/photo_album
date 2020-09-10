@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import './styles.scss';
 
 interface IProps {
-    onClick:(id:number|string) => void;
+    onClick?:(id:number|string) => void;
     id:number|string;
     text: React.ReactNode;
 }
@@ -13,7 +13,9 @@ const Button:React.FC<IProps> = ({
     text
 }) => {
 
-    const onClickCallback = useCallback(() => onClick(id), [onClick, id])
+    const onClickCallback = useCallback(() => {
+        if(onClick) onClick(id)
+    }, [onClick, id])
 
     return (
         <div>

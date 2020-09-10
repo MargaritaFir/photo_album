@@ -9,7 +9,7 @@ import Preloader from '../../components/Preloader/Preloader';
 import './styles.scss';
 
 interface IProps {
-    userId: string | null;
+    userId: string 
 }
 
 const AlbumsGrid:React.FC<IProps> = ({ userId }) => {
@@ -20,17 +20,19 @@ const AlbumsGrid:React.FC<IProps> = ({ userId }) => {
     const renderItemCallback = useCallback(album => <AlbumCard key={album.id} album={album} userId={userId}/>, [userId]);
 
     return(
-        <>
-            <div className="albums_grid">
-                {
-                    (isLoading) ? 
-                        <Preloader/> : 
-                            (!isEmpty) ? 
-                                <List<IAlbum> items={albums} renderItem={renderItemCallback}/> : 
-                                    <EmptyContainer message={'User don\'t have albums'}/> 
-                }
-            </div>    
-        </>
+        <>  
+            { isLoading && <div className="preloader_center"><Preloader/></div> } 
+            { !isLoading && isEmpty && <EmptyContainer message={'User don\'t have albums'}/> } 
+
+            { 
+                !isLoading && 
+                !isEmpty && (
+                    <div className="albums_grid">
+                        <List<IAlbum> items={albums} renderItem={renderItemCallback}/>
+                    </div> 
+                )}
+        </>    
+                        
 
     )
 }

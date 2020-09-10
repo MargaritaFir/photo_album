@@ -26,21 +26,19 @@ const ContentRouter:React.FC = () => {
         
     }, [userId, loadAlbums, albumId, loadPhotos]);
 
-    const handleClickReturn = useCallback(() => {
-        if(albumId) loadPhotos(albumId)
-    }, [loadPhotos, albumId]);
-
-    const renderAlbumCallback = useCallback(() => <AlbumsGrid   userId={userId}/>, [userId] );
-    const renderPhotosCallback = useCallback(() => <PhotosGrid  userId={userId} onClickReturn={handleClickReturn} />, [userId, handleClickReturn] );
     const renderEmptyContainerCallback = useCallback(() => <EmptyContainer message={message} />, []);
-    
+    const renderAlbumCallback = useCallback(() => userId && <AlbumsGrid   userId={userId}/>, [userId] );
+    const renderPhotosCallback = useCallback(() => userId && <PhotosGrid  userId={userId} />, [userId] );
+
+    if (!userId) {
+        return <Route path='/' render={renderEmptyContainerCallback} />
+    }
+ 
     return (
         <Switch>  
-            { !userId  && <Route path='/' render={renderEmptyContainerCallback} /> }
             <Route path='/albums' render={renderAlbumCallback} /> 
-            <Route path='/photos' render={renderPhotosCallback} />                               
+            <Route path='/photos' render={renderPhotosCallback} />                    
         </Switch>
-
     )
 }
 
