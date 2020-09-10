@@ -8,13 +8,15 @@ interface IProps {
     name: string,
     onSelect:(id:number) => void;
     selectedItemId?: number;
+    email: string
 };
 
 const Item:React.FC<IProps> = ({ 
     id, 
     name, 
     onSelect,
-    selectedItemId
+    selectedItemId, 
+    email
 }) => {
 
     const classList = (selectedItemId !== id) ? "item" : "item selected";
@@ -23,7 +25,8 @@ const Item:React.FC<IProps> = ({
     return (
         <Link to={`/albums?userId=${id}`}>
             <div className={classList} id={`item_${id}`} onClick={onClickCallback}>
-                <span>{name}</span>
+                <span className='item_name'>{name}</span>
+                <span className='item_email'>{email}</span>
             </div>
         </Link>
     )
