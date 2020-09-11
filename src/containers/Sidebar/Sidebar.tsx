@@ -35,11 +35,12 @@ const SideBar:React.FC<IProps> = ({
                 placeholder={placeholder}
             />
             <div className="sidebar_list_container">
-                { isLoading ?  
-                    <Preloader/> : 
-                        isEmpty ? 
-                            <NotFoundItem notFoundElement={notFoundElement}/> : 
-                                <UsersList items={users} onSelect={selectUser} selectedItemId={selectedUserId} />
+                { 
+                    isLoading ?  
+                        <Preloader/> : 
+                            isEmpty ? 
+                                <NotFoundItem notFoundElement={notFoundElement}/> : 
+                                    <UsersList items={users} onSelect={selectUser} selectedItemId={selectedUserId} />
                 }   
             </div>
         </nav>       
