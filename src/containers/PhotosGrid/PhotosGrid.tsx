@@ -24,19 +24,16 @@ const PhotosGrid:React.FC = () => {
 
     return(
         <>
-
             { userId && <ReturnBackButton id={userId}/>}
-            { isLoading && <Preloader/> }
-            { !isLoading && isEmpty && <EmptyContainer message={'This album don\'t have photos!'}/> } 
-            {
-                !isLoading && 
-                !isEmpty && (
-                    <div className="photos">
-                        <List items={photos} renderItem={renderItemCallBack} />    
-                    </div>
-            )}
+            { isLoading ? 
+                <Preloader/> : 
+                    isEmpty ? 
+                        <EmptyContainer message={'This album don\'t have photos!'}/> :
+                            <div className="photos">
+                                <List items={photos} renderItem={renderItemCallBack} />    
+                            </div>
+            }
         </>
-        
     )
 }
 

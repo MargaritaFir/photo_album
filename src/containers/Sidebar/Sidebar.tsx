@@ -6,17 +6,10 @@ import Input from '../../components/Input/Input';
 import UsersList from '../../components/UsersList/UsersList';
 import Preloader from '../../components/Preloader/Preloader';
 import NotFoundItem from '../../components/NotFoundItem/NotFoundItem';
+import { placeholder, notFoundElement } from '../../common/constants';
 import './styles.scss';
 
-interface IProps {
-    notFoundElement:string;
-    placeholder: string;
-};
-
-const SideBar:React.FC<IProps> = ({ 
-    notFoundElement,
-    placeholder, 
-}) => {
+const SideBar:React.FC = () => {
 
     const query = useQuery();
     const { filterValue, setFilterValue, users, selectUser, selectedUserId, setClearValue, isLoading, isEmpty } = useContext(SideBarContext);
@@ -40,7 +33,7 @@ const SideBar:React.FC<IProps> = ({
                         <Preloader/> : 
                             isEmpty ?                            
                                 <NotFoundItem notFoundElement={notFoundElement}/> : 
-                                    <UsersList items={users} onSelect={selectUser} selectedItemId={selectedUserId} />
+                                    <UsersList users={users} onSelect={selectUser} selectedUserId={selectedUserId} />
                 }   
             </div>
         </nav>       

@@ -1,27 +1,42 @@
 import React, { useCallback } from 'react';
 import { observer } from 'mobx-react';
-import { IItem } from '../../common/interfaces';
 import List from '../List/List';
-import Item from './Item/Item';
+import User from './User/User';
 import './styles.scss';
 
+interface IUsers {
+    id: number;
+    name: string;
+    email: string;
+}
+
 interface IProps {
-    items:IItem[];
+    users:IUsers[];
     onSelect:(id:number) => void;  
-    selectedItemId?: number;
+    selectedUserId?: number;
 };
 
 const UsersList:React.FC<IProps> = ({
-    items, 
+    users, 
     onSelect, 
-    selectedItemId 
+    selectedUserId 
 }) => {
 
-    const renderItemCallback = useCallback((item ) => <Item key={item.id} {...item} onSelect={onSelect} selectedItemId={selectedItemId}/>, [selectedItemId, onSelect])
+    const renderUserCallback = useCallback(user  => {  
+        return (
+            <User 
+                key={user.id} 
+                id={user.id} 
+                email={user.email} 
+                name={user.name} 
+                onSelect={onSelect} 
+                selectedUserId={selectedUserId}
+            />
+        )}, [selectedUserId, onSelect])
 
     return (
         <div className='nav_list'>
-            <List<IItem> items={items} renderItem={renderItemCallback} />
+            <List<IUsers> items={users} renderItem={renderUserCallback} />
         </div>
     )
 }

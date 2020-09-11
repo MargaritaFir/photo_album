@@ -1,17 +1,15 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 
-interface IProps<T>{
+interface IProps<T> {
     items: T[];
     renderItem: (item: T) => React.ReactNode;
 }
 
-function List<T>(props: IProps<T>): JSX.Element {
-
-    const renderItemCallback = useCallback(item => props.renderItem(item), [props])
+function List<T>(props: IProps<T>) {
 
     return (
         <React.Fragment>
-            {props.items.map(renderItemCallback)}
+            {props.items.map( (item)=> props.renderItem(item))}
         </React.Fragment>
     )
 }

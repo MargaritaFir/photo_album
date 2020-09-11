@@ -12,11 +12,7 @@ const Button:React.FC<IProps> = ({ onClick, text}) => {
         if(onClick) onClick()
     }, [onClick])
 
-    return (
-        <div>
-            <button onClick={onClickCallback}>{text}</button>
-        </div>
-    )
+    return <button onClick={onClickCallback}>{text}</button>
 }
 
 export default Button;

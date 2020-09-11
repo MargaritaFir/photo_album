@@ -20,22 +20,21 @@ const AlbumsGrid:React.FC = () => {
         if(userId) loadAlbums(userId);     
     }, [userId, loadAlbums]);
 
-    const renderItemCallback = useCallback(album => userId && <AlbumCard key={album.id} album={album} userId={userId}/>, [userId]);
+    const renderItemCallback = useCallback(album => <AlbumCard key={album.id} albumId={album.id} userId={album.userId} title={album.title} />, []);
 
     return(
         <>  
             <Header/>
 
-            { isLoading && <div className="preloader_center"><Preloader/></div> } 
-            { !isLoading && isEmpty && <EmptyContainer message={'User don\'t have albums'}/> } 
+            { isLoading ? 
+                <div className="preloader_center"><Preloader/></div> : 
+                    isEmpty ? 
+                        <EmptyContainer message={'User don\'t have albums'}/> : 
+                            <div className="albums_grid">
+                                <List<IAlbum> items={albums} renderItem={renderItemCallback}/>
+                            </div> 
+            } 
 
-            {   
-                !isLoading && 
-                !isEmpty && (
-                    <div className="albums_grid">
-                        <List<IAlbum> items={albums} renderItem={renderItemCallback}/>
-                    </div> 
-            )}
         </>    
     )
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import './styles.scss';
 import  { Route, Switch } from "react-router-dom";
@@ -21,4 +20,4 @@ const Content:React.FC = () => {
     )
 }
 
-export default observer(Content);
+export default Content;

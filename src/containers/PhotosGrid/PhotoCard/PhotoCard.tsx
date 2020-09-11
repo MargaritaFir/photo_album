@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './styles.scss';
-import { observer } from 'mobx-react';
 
 interface IProps {
     id: number;
@@ -15,4 +14,4 @@ const PhotoCard:React.FC<IProps> = ({ id, title }) => {
     )
 }
 
-export default observer(PhotoCard);
+export default memo(PhotoCard);
