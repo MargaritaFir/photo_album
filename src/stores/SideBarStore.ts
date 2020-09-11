@@ -1,45 +1,44 @@
 import { observable, computed, action } from 'mobx';
 import { actionAsync, task } from "mobx-utils"
 import { IUserInfo } from '../common/interfaces';
-import UsersApi from '../common/UsersApi';
+import Api from '../common/Api';
 import { filterByName } from '../common/utils/filters';
 
 export class SideBarStore {
 
-    //как его типизировать?
-    public usersApi:any;
+    private api:Api;
 
-    constructor(url:string){
-        this.usersApi = new UsersApi(url);
+    constructor(api:Api){
+        this.api = api;
     }
 
     @observable private _users: IUserInfo[] = [];
-    @observable filterValue: string = '';
+    @observable filterValue = '';
     @observable selectedUserId?: number; 
-    @observable isLoading: boolean = false;
+    @observable isLoading = false;
 
-    @computed get users(): IUserInfo[] {
+    @computed get users() {
         return (this.filterValue) ? filterByName(this._users, this.filterValue):this._users;
     };
 
     @computed get isEmpty ()  {
-        return (this.users.length) ? false : true;
+        return !this.users.length
     };
 
-    // вопрос правильно ли так проставлять isLoading. 
-    // я не  поняла, как его вычислять, если оно будет @computed
+
     @actionAsync 
     loadUsers = async() => {
-        this.isLoading = true;
-        try {
-            const users = await task(this.usersApi.getUsers());
-            this._users = users;         
-        } catch (error) {
-            this.isLoading = false;
-            console.log('Error: ', error);
-        }
-        this.isLoading = false;
 
+        try {
+            this.isLoading = true;
+            const users = await task(this.api.getUsers());
+            this._users = users;         
+        } catch (error) {      
+            console.log('Error: ', error);
+        } finally {
+            this.isLoading = false;
+        }
+        
     };
 
     @action setFilterValue = (value:string) => {    
@@ -59,7 +58,6 @@ export class SideBarStore {
 	@action setClearValue = () => {
         this.filterValue = ''; 
     };
-
 }
 
 

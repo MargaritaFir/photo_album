@@ -38,7 +38,7 @@ const SideBar:React.FC<IProps> = ({
                 { 
                     isLoading ?  
                         <Preloader/> : 
-                            isEmpty ? 
+                            isEmpty ?                            
                                 <NotFoundItem notFoundElement={notFoundElement}/> : 
                                     <UsersList items={users} onSelect={selectUser} selectedItemId={selectedUserId} />
                 }   

@@ -1,7 +1,7 @@
-import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react';
 import useQuery from '../../hooks/useQuery';
-import { AlbumsGridContext } from '../../context/Context';
+import { useAlbumsGridContext } from '../../context/Context';
 import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
 import List from '../../components/List/List';
@@ -13,7 +13,7 @@ import './styles.scss';
 const AlbumsGrid:React.FC = () => {
 
     const query = useQuery();
-    const { loadAlbums, albums, isLoading, isEmpty } = useContext(AlbumsGridContext);
+    const { loadAlbums, albums, isLoading, isEmpty } = useAlbumsGridContext();
     const userId = useMemo( () => query.get('userId'), [query]);
 
     useEffect(() => {

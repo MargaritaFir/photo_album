@@ -1,35 +1,36 @@
 import { observable, computed } from 'mobx';
 import { actionAsync, task } from "mobx-utils"
 import { IAlbum } from '../common/interfaces';
-import UsersApi from '../common/UsersApi';
+import Api from '../common/Api';
 
 
 class AlbumsGridStore {
 
-    public usersApi:any;
+    private api:Api;
 
-    constructor(url:string){
-        this.usersApi = new UsersApi(url);
+    constructor(api:Api){
+        this.api = api;
     }
 
     @observable albums: IAlbum[] = []
-    @observable isLoading: boolean = false;
+    @observable isLoading = false;
 
     @computed get isEmpty() {
-        return (this.albums.length) ? false : true;
+        return !this.albums.length;
     }
 
     @actionAsync 
     loadAlbums = async(userId:number|string) => {
-        this.isLoading = true;
+        
         try {
-            const albums = await task(this.usersApi.getAlbums(userId));
+            this.isLoading = true;
+            const albums = await task(this.api.getAlbums(userId));
             this.albums = albums;         
         } catch (error) {
-            this.isLoading = false;
             console.log('Error: ', error);
+        }  finally {
+            this.isLoading = false;
         }
-        this.isLoading = false;
     }
 }
 

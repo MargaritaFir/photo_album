@@ -1,34 +1,35 @@
 import { observable, computed } from 'mobx';
 import { actionAsync, task } from "mobx-utils"
 import { IPhoto } from '../common/interfaces';
-import UsersApi from '../common/UsersApi';
+import Api from '../common/Api';
 
 class PhotosGridStore {
 
-    public usersApi:any;
+    public api:Api;
 
-    constructor(url:string){
-        this.usersApi = new UsersApi(url);
+    constructor(api:Api){
+        this.api = api;
     }
 
     @observable photos: IPhoto[] = []
-    @observable isLoading: boolean = false;
+    @observable isLoading = false;
 
     @computed get isEmpty() {
-        return (this.photos.length) ? false : true;
+        return !this.photos.length;
     }
 
     @actionAsync 
     loadPhotos = async(albumId:number|string) => {
-        this.isLoading = true;
+
         try {
-            const photos = await task(this.usersApi.getPhotos(albumId));
+            this.isLoading = true;
+            const photos = await task(this.api.getPhotos(albumId));
             this.photos = photos;         
         } catch (error) {
-            this.isLoading = false;
             console.log('Error: ', error);
+        } finally {
+            this.isLoading = false;
         }
-        this.isLoading = false;
     }
 }
 
