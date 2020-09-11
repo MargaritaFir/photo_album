@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react';
 import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
@@ -6,16 +6,19 @@ import List from '../../components/List/List';
 import { AlbumsGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import Preloader from '../../components/Preloader/Preloader';
+import useQuery from '../../hooks/useQuery';
 import './styles.scss';
 
-interface IProps {
-    userId: string 
-}
 
-const AlbumsGrid:React.FC<IProps> = ({ userId }) => {
+const AlbumsGrid:React.FC = () => {
+    let query = useQuery();
 
-    const { albums, isLoading, isEmpty } = useContext(AlbumsGridContext);
+    const { loadAlbums, albums, isLoading, isEmpty } = useContext(AlbumsGridContext);
+    const userId = useMemo( () => query.get('userId'), [query]);
 
+    useEffect(() => {
+        if(userId) loadAlbums(userId);     
+    }, [userId, loadAlbums]);
 
     const renderItemCallback = useCallback(album => <AlbumCard key={album.id} album={album} userId={userId}/>, [userId]);
 

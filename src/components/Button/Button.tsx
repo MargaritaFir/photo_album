@@ -2,20 +2,18 @@ import React, {useCallback} from 'react';
 import './styles.scss';
 
 interface IProps {
-    onClick?:(id:number|string) => void;
-    id:number|string;
-    text: React.ReactNode;
+    onClick?:() => void;
+    text: string;
 }
 
 const Button:React.FC<IProps> = ({
     onClick,
-    id,
     text
 }) => {
 
     const onClickCallback = useCallback(() => {
-        if(onClick) onClick(id)
-    }, [onClick, id])
+        if(onClick) onClick()
+    }, [onClick])
 
     return (
         <div>
