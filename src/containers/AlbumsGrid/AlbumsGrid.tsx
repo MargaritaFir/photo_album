@@ -7,6 +7,7 @@ import AlbumCard from './AlbumCard/AlbumCard';
 import List from '../../components/List/List';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import Preloader from '../../components/Preloader/Preloader';
+import Header from './Header/Header';
 import './styles.scss';
 
 const AlbumsGrid:React.FC = () => {
@@ -23,6 +24,8 @@ const AlbumsGrid:React.FC = () => {
 
     return(
         <>  
+            <Header/>
+
             { isLoading && <div className="preloader_center"><Preloader/></div> } 
             { !isLoading && isEmpty && <EmptyContainer message={'User don\'t have albums'}/> } 
 

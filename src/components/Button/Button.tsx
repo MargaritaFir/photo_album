@@ -9,11 +9,8 @@ interface IProps {
 // Я сделала просто пустую кнопку, которую можно переиспользовать, которая может что-то делать при клике, 
 // но сейчас она обёрнута в Link, поэтому onClick не передаётся
 
-const Button:React.FC<IProps> = ({
-    onClick,
-    text
-}) => {
-
+const Button:React.FC<IProps> = ({ onClick, text}) => {
+    
     const onClickCallback = useCallback(() => {
         if(onClick) onClick()
     }, [onClick])
@@ -24,6 +21,5 @@ const Button:React.FC<IProps> = ({
         </div>
     )
 }
-
 
 export default Button;
