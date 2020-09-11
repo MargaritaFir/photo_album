@@ -5,6 +5,6 @@ interface IProps {
     notFoundElement: React.ReactNode;
 }
 
-const NotFoundItem:React.FC<IProps> = ( { notFoundElement } ) => <div className="not_found"> <span>{notFoundElement}</span></div>;
+const NotFoundItem:React.FC<IProps> = ({ notFoundElement }) => <div className="not_found"> <span>{notFoundElement}</span></div>;
 
 export default NotFoundItem;

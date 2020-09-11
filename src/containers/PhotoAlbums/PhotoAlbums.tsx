@@ -1,11 +1,10 @@
 import React, { useContext, useEffect }  from 'react';
-import  SideBar from '../Sidebar/Sidebar';
+import { observer } from 'mobx-react';
+import { SideBarContext } from '../../context/Context';
 import { placeholder, notFoundElement } from '../../common/constants';
 import Content from '../Content/Content';
-import { SideBarContext } from '../../context/Context';
-import { observer } from 'mobx-react';
+import  SideBar from '../Sidebar/Sidebar';
 import './styles.scss';
-
 
 const PhotoAlbums:React.FC = () => {
 

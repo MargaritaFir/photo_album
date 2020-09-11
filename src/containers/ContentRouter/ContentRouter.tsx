@@ -2,9 +2,6 @@ import React from 'react';
 import  { Route, Switch } from "react-router-dom";
 import AlbumsGrid from '../AlbumsGrid/AlbumsGrid';
 import PhotosGrid from '../PhotosGrid/PhotosGrid';
-import { observer } from 'mobx-react';
-
-
 
 const ContentRouter:React.FC = () => {
 
@@ -16,4 +13,4 @@ const ContentRouter:React.FC = () => {
     )
 }
 
-export default observer(ContentRouter);
+export default ContentRouter;

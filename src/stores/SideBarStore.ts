@@ -1,11 +1,12 @@
 import { observable, computed, action } from 'mobx';
-import {actionAsync, task} from "mobx-utils"
+import { actionAsync, task } from "mobx-utils"
 import { IUserInfo } from '../common/interfaces';
 import UsersApi from '../common/UsersApi';
 import { filterByName } from '../common/utils/filters';
 
 export class SideBarStore {
 
+    //как его типизировать?
     public usersApi:any;
 
     constructor(url:string){
@@ -25,6 +26,8 @@ export class SideBarStore {
         return (this.users.length) ? false : true;
     };
 
+    // вопрос правильно ли так проставлять isLoading. 
+    // я не  поняла, как его вычислять, если оно будет @computed
     @actionAsync 
     loadUsers = async() => {
         this.isLoading = true;
@@ -38,9 +41,11 @@ export class SideBarStore {
         this.isLoading = false;
 
     };
+
     @action setFilterValue = (value:string) => {    
         this.filterValue = value;       
     };
+
     @action selectUser = (userId: number) => {
             const user = this._users.find(user => user.id === userId);
             if(user) {
@@ -50,6 +55,7 @@ export class SideBarStore {
             }
 
     };
+
 	@action setClearValue = () => {
         this.filterValue = ''; 
     };

@@ -3,7 +3,6 @@ import { actionAsync, task } from "mobx-utils"
 import { IPhoto } from '../common/interfaces';
 import UsersApi from '../common/UsersApi';
 
-
 class PhotosGridStore {
 
     public usersApi:any;

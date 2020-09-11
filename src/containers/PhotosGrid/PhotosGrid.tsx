@@ -1,22 +1,18 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react';
-import List from '../../components/List/List';
+import { Link } from 'react-router-dom';
+import useQuery from '../../hooks/useQuery';
 import { PhotosGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
+import List from '../../components/List/List';
 import Preloader from '../../components/Preloader/Preloader';
 import Button from '../../components/Button/Button';
 import './styles.scss';
-import { Link } from 'react-router-dom';
-import useQuery from '../../hooks/useQuery';
-
-
 
 const PhotosGrid:React.FC = () => {
 
-    let query = useQuery();
-
+    const query = useQuery();
     const { isEmpty, isLoading, photos, loadPhotos } = useContext(PhotosGridContext);
-
     const userId = useMemo( () => query.get('userId'), [query]);
     const albumId = useMemo( () => query.get('albumId'), [query]);
 
@@ -26,7 +22,6 @@ const PhotosGrid:React.FC = () => {
 
     const renderItemCallBack = useCallback(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}><span>{photo.title}</span></div> , []);
 
-    
     return(
         <>
             <div className="button_container">  

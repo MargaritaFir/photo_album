@@ -1,6 +1,6 @@
 import React from 'react'
-import {SideBarStore, } from '../stores/SideBarStore';
-import {URL} from '../common/constants';
+import { SideBarStore, } from '../stores/SideBarStore';
+import { URL } from '../common/constants';
 import AlbumsGridStore from '../stores/AlbumsGridStore';
 import PhotosGridStore from '../stores/PhotosGridStore';
 

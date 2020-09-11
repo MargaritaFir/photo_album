@@ -1,19 +1,24 @@
 import React, {useMemo} from 'react';
+import useQuery from '../../hooks/useQuery';
 import { observer } from 'mobx-react';
 import ContentRouter from '../ContentRouter/ContentRouter';
-import './styles.scss';
-import useQuery from '../../hooks/useQuery';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
+import './styles.scss';
+
+const message = 'Select a user from the list';
 
 const Content:React.FC = () => {
-    let query = useQuery();
-    const message = 'Select a user from the list';
+
+    const query = useQuery();
     const userId = useMemo( () => query.get('userId'), [query]);
-    console.log('userid content', userId)
+
     return(
         <div className="content">
-            { userId ? <ContentRouter /> :
-                <EmptyContainer message={message} /> }           
+            { 
+                userId ?
+                    <ContentRouter /> :
+                        <EmptyContainer message={message} /> 
+            }           
         </div>
     )
 }

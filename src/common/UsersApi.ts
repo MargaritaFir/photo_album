@@ -1,5 +1,7 @@
 //Получение списка пользователя
 
+type IdType = { id: number | string };
+
 class UsersApi {
     private url:string;
     constructor(url: string){
@@ -14,7 +16,7 @@ class UsersApi {
         });
     };
 
-    getAlbums(userId:number|string){
+    getAlbums(userId:IdType){
         return fetch(`${this.url}/albums?userId=${userId}`)
         .then((response) => response.json())
         .then(data => {
@@ -22,7 +24,7 @@ class UsersApi {
         });
     };
 
-    getPhotos(albumId:number|string){
+    getPhotos(albumId:IdType){
         return fetch(`${this.url}/photos?albumId=${albumId}`)
         .then((response) => response.json())
         .then(data => {

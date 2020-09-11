@@ -1,5 +1,5 @@
 import { observable, computed } from 'mobx';
-import {actionAsync, task} from "mobx-utils"
+import { actionAsync, task } from "mobx-utils"
 import { IAlbum } from '../common/interfaces';
 import UsersApi from '../common/UsersApi';
 
