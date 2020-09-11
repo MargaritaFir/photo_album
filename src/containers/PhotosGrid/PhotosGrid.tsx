@@ -1,12 +1,12 @@
 import React, { useCallback, useContext, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react';
-import { Link } from 'react-router-dom';
 import useQuery from '../../hooks/useQuery';
 import { PhotosGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import List from '../../components/List/List';
 import Preloader from '../../components/Preloader/Preloader';
-import Button from '../../components/Button/Button';
+import PhotoCard from './PhotoCard/PhotoCard';
+import ReturnBackButton from './ReturnBackButton/ReturnBackButton';
 import './styles.scss';
 
 const PhotosGrid:React.FC = () => {
@@ -20,16 +20,12 @@ const PhotosGrid:React.FC = () => {
         if(albumId) loadPhotos(albumId);    
     }, [ albumId, loadPhotos]);
 
-    const renderItemCallBack = useCallback(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}><span>{photo.title}</span></div> , []);
+    const renderItemCallBack = useCallback(photo => <PhotoCard key={photo.id} id={photo.id} title={photo.title} /> , []);
 
     return(
         <>
-            <div className="button_container">  
-                <Link to={`/albums?userId=${userId}`}>
-                    <Button  text={'Go back to user\'s albums'}/>
-                </Link> 
-            </div>
 
+            { userId && <ReturnBackButton id={userId}/>}
             { isLoading && <Preloader/> }
             { !isLoading && isEmpty && <EmptyContainer message={'This album don\'t have photos!'}/> } 
             {

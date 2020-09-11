@@ -4,27 +4,4 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 10px;
     padding: 10px 50px;
-
-    .photo {
-        width: 200px;
-        height: 200px;
-        display: flex;
-        justify-items: center;
-        align-items: center;
-        padding: 10px;
-        border: 3px solid rgb(3, 122, 77);
-        margin:5px; 
-        border-radius: 5px;
-
-        span {
-            margin: 0 auto;
-        }
-    }
-}
-
-.button_container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding:20px;
 }
