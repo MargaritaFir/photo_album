@@ -3,11 +3,8 @@ import './styles.scss';
 
 interface IProps {
     onClick?:() => void;
-    text: string;
+    text: string; // children: React.ReactNode
 }
-
-// Я сделала просто пустую кнопку, которую можно переиспользовать, которая может что-то делать при клике, 
-// но сейчас она обёрнута в Link, поэтому onClick не передаётся
 
 const Button:React.FC<IProps> = ({ onClick, text}) => {
     
@@ -15,11 +12,7 @@ const Button:React.FC<IProps> = ({ onClick, text}) => {
         if(onClick) onClick()
     }, [onClick])
 
-    return (
-        <div>
-            <button onClick={onClickCallback}>{text}</button>
-        </div>
-    )
+    return <button onClick={onClickCallback}>{text}</button>
 }
 
 export default Button;

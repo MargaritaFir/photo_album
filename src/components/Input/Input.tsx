@@ -1,5 +1,4 @@
-import React, { useCallback } from 'react';
-import { observer } from 'mobx-react';
+import React, { useCallback, memo } from 'react';
 import './styles.scss';
 
 interface IProps {
@@ -26,4 +25,4 @@ const Input:React.FC<IProps> = ({
     )
 }
 
-export default observer(Input);
+export default memo(Input);

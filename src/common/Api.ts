@@ -1,8 +1,8 @@
 //Получение списка пользователя
 
-type IdType = { id: number | string };
+type IdType = number | string ;
 
-class UsersApi {
+class Api {
     private url:string;
     constructor(url: string){
         this.url = url
@@ -34,4 +34,4 @@ class UsersApi {
 
 }
 
-export default UsersApi;
+export default Api;

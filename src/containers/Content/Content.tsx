@@ -1,25 +1,23 @@
-import React, { useContext } from 'react';
-import { observer } from 'mobx-react';
-import { SideBarContext } from '../../context/Context';
-import ContentRouter from '../ContentRouter/ContentRouter';
+import React from 'react';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import './styles.scss';
+import  { Route, Switch } from "react-router-dom";
+import AlbumsGrid from '../AlbumsGrid/AlbumsGrid';
+import PhotosGrid from '../PhotosGrid/PhotosGrid';
 
 const message = 'Select a user from the list';
 
 const Content:React.FC = () => {
 
-    const { selectedUserId } = useContext(SideBarContext);
-
     return (
         <div className="content">
-            { 
-                selectedUserId ?
-                    <ContentRouter /> :
-                        <EmptyContainer message={message} /> 
-            }           
+            <Switch>  
+                <Route exact path='/' render={()=>  <EmptyContainer message={message}  /> }  />
+                <Route path='/albums' component={AlbumsGrid} /> 
+                <Route path='/photos' component={PhotosGrid} />                    
+            </Switch>                                
         </div>
     )
 }
 
-export default observer(Content);
+export default Content;

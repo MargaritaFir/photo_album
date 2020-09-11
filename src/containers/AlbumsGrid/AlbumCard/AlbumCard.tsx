@@ -1,23 +1,23 @@
-import React from 'react';
-import { observer } from 'mobx-react';
+import React, { memo } from 'react';
 import  { Link } from "react-router-dom";
 import { IAlbum } from '../../../common/interfaces';
 import './styles.scss';
 
 interface IProps {
-    album: IAlbum;
+    albumId: IAlbum;
     userId: string; 
+    title: string;
 }
 
-const AlbumCard:React.FC<IProps> = ({ album, userId }) => {
+const AlbumCard:React.FC<IProps> = ({ albumId, userId, title }) => {
 
     return(
-        <Link to={`/photos?userId=${userId}&albumId=${album.id}`}>
-            <div className="album" id={`album_${album.id}`} >
-                <span>{album.title}</span>
+        <Link to={`/photos?userId=${userId}&albumId=${albumId}`}>
+            <div className="album" id={`album_${albumId}`} >
+                <span>{title}</span>
             </div>
         </Link>
     )
 }
 
-export default observer(AlbumCard);
+export default memo(AlbumCard);

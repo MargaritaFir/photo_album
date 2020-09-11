@@ -1,7 +1,7 @@
-import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { observer } from 'mobx-react';
 import useQuery from '../../hooks/useQuery';
-import { PhotosGridContext } from '../../context/Context';
+import { usePhotosGridContext } from '../../context/Context';
 import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import List from '../../components/List/List';
 import Preloader from '../../components/Preloader/Preloader';
@@ -12,7 +12,7 @@ import './styles.scss';
 const PhotosGrid:React.FC = () => {
 
     const query = useQuery();
-    const { isEmpty, isLoading, photos, loadPhotos } = useContext(PhotosGridContext);
+    const { isEmpty, isLoading, photos, loadPhotos } = usePhotosGridContext();
     const userId = useMemo( () => query.get('userId'), [query]);
     const albumId = useMemo( () => query.get('albumId'), [query]);
 
@@ -24,19 +24,16 @@ const PhotosGrid:React.FC = () => {
 
     return(
         <>
-
             { userId && <ReturnBackButton id={userId}/>}
-            { isLoading && <Preloader/> }
-            { !isLoading && isEmpty && <EmptyContainer message={'This album don\'t have photos!'}/> } 
-            {
-                !isLoading && 
-                !isEmpty && (
-                    <div className="photos">
-                        <List items={photos} renderItem={renderItemCallBack} />    
-                    </div>
-            )}
+            { isLoading ? 
+                <Preloader/> : 
+                    isEmpty ? 
+                        <EmptyContainer message={'This album don\'t have photos!'}/> :
+                            <div className="photos">
+                                <List items={photos} renderItem={renderItemCallBack} />    
+                            </div>
+            }
         </>
-        
     )
 }
 
