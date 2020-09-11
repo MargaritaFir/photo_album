@@ -7,7 +7,6 @@ import { observer } from 'mobx-react';
 import './styles.scss';
 
 
-
 const PhotoAlbums:React.FC = () => {
 
     const { loadUsers } = useContext(SideBarContext);
