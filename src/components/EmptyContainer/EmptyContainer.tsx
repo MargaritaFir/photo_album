@@ -1,8 +1,8 @@
 import React from 'react';
-import './emptyContainer.scss';
+import './styles.scss';
 
 interface IProps {
-   message: React.ReactNode;
+    message: React.ReactNode;
 }
 
 const EmptyContainer:React.FC<IProps> = ({ message }) => {

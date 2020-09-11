@@ -1,27 +1,25 @@
-import React from 'react';
-import {IPhoto, IAlbum} from '../../common/interfaces';
-import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
+import React, { useContext } from 'react';
+import { observer } from 'mobx-react';
+import { SideBarContext } from '../../context/Context';
 import ContentRouter from '../ContentRouter/ContentRouter';
-import './content.scss';
+import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
+import './styles.scss';
 
-interface IProps {
-    albums: IAlbum[];
-    photos:IPhoto[];
-    onSelect: (id:number) => void;
-}
+const message = 'Select a user from the list';
 
+const Content:React.FC = () => {
 
-const Content:React.FC<IProps> = ({
-    albums,
-    photos,
-    onSelect
-}) => {
+    const { selectedUserId } = useContext(SideBarContext);
 
-    return(
+    return (
         <div className="content">
-            {(albums.length || photos.length) ? <ContentRouter albums={albums} onSelect={onSelect} photos={photos} /> : <EmptyContainer message={'Select a user from the list'} /> }
+            { 
+                selectedUserId ?
+                    <ContentRouter /> :
+                        <EmptyContainer message={message} /> 
+            }           
         </div>
     )
 }
 
-export default Content;
+export default observer(Content);

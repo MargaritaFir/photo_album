@@ -5,7 +5,6 @@ interface IProps<T>{
     renderItem: (item: T) => React.ReactNode;
 }
 
-
 function List<T>(props: IProps<T>): JSX.Element {
 
     const renderItemCallback = useCallback(item => props.renderItem(item), [props])

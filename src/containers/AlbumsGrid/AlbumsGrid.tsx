@@ -1,31 +1,43 @@
-import React, { memo, useCallback } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import { observer } from 'mobx-react';
+import useQuery from '../../hooks/useQuery';
+import { AlbumsGridContext } from '../../context/Context';
 import { IAlbum } from '../../common/interfaces';
 import AlbumCard from './AlbumCard/AlbumCard';
-import './albumsGrid.scss';
 import List from '../../components/List/List';
+import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
+import Preloader from '../../components/Preloader/Preloader';
+import Header from './Header/Header';
+import './styles.scss';
 
-interface IProps {
-    albums: IAlbum[];
-    onSelect: (id:number) => void;
-    userId: string | null;
+const AlbumsGrid:React.FC = () => {
 
-}
+    const query = useQuery();
+    const { loadAlbums, albums, isLoading, isEmpty } = useContext(AlbumsGridContext);
+    const userId = useMemo( () => query.get('userId'), [query]);
 
-const AlbumsGrid:React.FC<IProps> = ({
-    albums, 
-    onSelect, 
-    userId 
-}) => {
+    useEffect(() => {
+        if(userId) loadAlbums(userId);     
+    }, [userId, loadAlbums]);
 
-    console.log('userId', userId);
-
-    const renderItemCallback = useCallback(album => <AlbumCard key={album.id} album={album} onSelect={onSelect}/>, [onSelect]);
+    const renderItemCallback = useCallback(album => userId && <AlbumCard key={album.id} album={album} userId={userId}/>, [userId]);
 
     return(
-        <div className="albums_grid">
-            <List<IAlbum> items={albums} renderItem={renderItemCallback}/>
-        </div>
+        <>  
+            <Header/>
+
+            { isLoading && <div className="preloader_center"><Preloader/></div> } 
+            { !isLoading && isEmpty && <EmptyContainer message={'User don\'t have albums'}/> } 
+
+            {   
+                !isLoading && 
+                !isEmpty && (
+                    <div className="albums_grid">
+                        <List<IAlbum> items={albums} renderItem={renderItemCallback}/>
+                    </div> 
+            )}
+        </>    
     )
 }
 
-export default memo(AlbumsGrid);
+export default observer(AlbumsGrid);

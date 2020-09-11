@@ -1,14 +1,18 @@
-
 .sidebar {
     width: 300px;
     background-color: rgba(9, 110, 63, 0.5);
     opacity: 0.6;
     width: 20%;
+    height: 100%;
     overflow: auto;
     padding: 10px;
 
+    &::-webkit-scrollbar { 
+      width: 3px; 
+      background-color: rgba(9, 110, 63, 0.5);
+    }
+
     .sidebar_list_container{
       margin:0;
-    }
-    
+    }  
   }

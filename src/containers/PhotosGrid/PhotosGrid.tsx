@@ -1,30 +1,43 @@
-import React, { memo, useCallback } from 'react';
-import { IPhoto } from '../../common/interfaces';
-import './photosGrid.scss';
+import React, { useCallback, useContext, useEffect, useMemo } from 'react';
+import { observer } from 'mobx-react';
+import useQuery from '../../hooks/useQuery';
+import { PhotosGridContext } from '../../context/Context';
+import EmptyContainer from '../../components/EmptyContainer/EmptyContainer';
 import List from '../../components/List/List';
+import Preloader from '../../components/Preloader/Preloader';
+import PhotoCard from './PhotoCard/PhotoCard';
+import ReturnBackButton from './ReturnBackButton/ReturnBackButton';
+import './styles.scss';
 
-interface IProps {
-    photos: IPhoto[];
-    userId: string | null;
-    albumId: string | null;
-}
+const PhotosGrid:React.FC = () => {
 
-const PhotosGrid:React.FC<IProps> = ({
-    photos, 
-    userId, 
-    albumId
-}) => {
+    const query = useQuery();
+    const { isEmpty, isLoading, photos, loadPhotos } = useContext(PhotosGridContext);
+    const userId = useMemo( () => query.get('userId'), [query]);
+    const albumId = useMemo( () => query.get('albumId'), [query]);
 
-    console.log('userId', userId);
-    console.log('albumId', albumId);
+    useEffect(() => {
+        if(albumId) loadPhotos(albumId);    
+    }, [ albumId, loadPhotos]);
 
-    const renderItemCallBack = useCallback(photo => <div className="photo" key={photo.id} id={`photoItem_${photo.id}`}><span>{photo.title}</span></div> , []);
-    
+    const renderItemCallBack = useCallback(photo => <PhotoCard key={photo.id} id={photo.id} title={photo.title} /> , []);
+
     return(
-        <div className="photos">
-            <List items={photos} renderItem={renderItemCallBack} />
-        </div>
+        <>
+
+            { userId && <ReturnBackButton id={userId}/>}
+            { isLoading && <Preloader/> }
+            { !isLoading && isEmpty && <EmptyContainer message={'This album don\'t have photos!'}/> } 
+            {
+                !isLoading && 
+                !isEmpty && (
+                    <div className="photos">
+                        <List items={photos} renderItem={renderItemCallBack} />    
+                    </div>
+            )}
+        </>
+        
     )
 }
 
-export default memo(PhotosGrid);
+export default observer(PhotosGrid);

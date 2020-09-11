@@ -1,6 +1,6 @@
 .album {
-    width: 250px;
-    height: 250px;
+    width: 230px;
+    height: 230px;
     display: flex;
     justify-items: center;
     align-items: center;
@@ -14,5 +14,10 @@
 
     span {
         margin: 0 auto;
+    }
+
+    &:hover {
+        background-color: rgba(9, 110, 63, 0.4);
+        transform: scale(1.03);
     }
 }

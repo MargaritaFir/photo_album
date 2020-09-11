@@ -1,10 +1,11 @@
-import React, { useCallback, memo } from 'react';
-import './input.scss';
+import React, { useCallback } from 'react';
+import { observer } from 'mobx-react';
+import './styles.scss';
 
 interface IProps {
     value: string;  
     placeholder:string;
-    onChange:(e:React.ChangeEvent<HTMLInputElement>) => void;
+    onChange:(value: string) => void;
     onClear: () => void;
 };
 
@@ -15,7 +16,7 @@ const Input:React.FC<IProps> = ({
     onClear 
 }) => {
     
-    const onChangeCallback = useCallback((e) => onChange(e), [onChange]);   
+    const onChangeCallback = useCallback((e) => onChange(e.target.value), [onChange]);   
 
     return (
         <div className='input_container'>
@@ -25,4 +26,4 @@ const Input:React.FC<IProps> = ({
     )
 }
 
-export default memo(Input);
+export default observer(Input);

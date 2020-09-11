@@ -1,23 +1,25 @@
-import React, {useCallback} from 'react';
+import React, { useCallback } from 'react';
+import './styles.scss';
 
 interface IProps {
-    onClick:(id: number) => void;
-    id: number;
+    onClick?:() => void;
+    text: string;
 }
 
-const Button:React.FC<IProps> = ({
-    onClick,
-    id
-}) => {
+// Я сделала просто пустую кнопку, которую можно переиспользовать, которая может что-то делать при клике, 
+// но сейчас она обёрнута в Link, поэтому onClick не передаётся
 
-    const onClickCallback = useCallback(() => onClick(id), [onClick, id])
+const Button:React.FC<IProps> = ({ onClick, text}) => {
+    
+    const onClickCallback = useCallback(() => {
+        if(onClick) onClick()
+    }, [onClick])
 
     return (
-        <div className="button_container">
-            <button onClick={onClickCallback} ></button>
+        <div>
+            <button onClick={onClickCallback}>{text}</button>
         </div>
     )
 }
-
 
 export default Button;

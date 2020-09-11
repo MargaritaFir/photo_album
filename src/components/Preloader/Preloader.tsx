@@ -1,8 +1,7 @@
 import React from 'react';
-import './preloader.scss';
+import './styles.scss';
 
 const Preloader:React.FC = () => {
-
     return (
         <div className='preloader_container'>
             <div className="lds-default">
